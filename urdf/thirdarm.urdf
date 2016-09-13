@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+
+<robot name="thirdarm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <link name="world"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="1.35525271560688E-18 -2.60208521396521E-18 -0.0031206056281612"
+        rpy="0 0 0" />
+      <mass
+        value="0.117171592221688" />
+      <inertia
+        ixx="0.000168587189778493"
+        ixy="-6.32136423849187E-24"
+        ixz="1.03256990866719E-21"
+        iyy="0.000168665544769063"
+        iyz="2.22500434546999E-23"
+        izz="0.000336412023899029" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="MX64_1">
+    <inertial>
+      <origin
+        xyz="-0.000454034818816733 -7.17677929237825E-10 0.0328947534977238"
+        rpy="0 0 0" />
+      <mass
+        value="0.0721209345399115" />
+      <inertia
+        ixx="2.48287142295403E-05"
+        ixy="2.34484066044565E-13"
+        ixz="-8.80643682505391E-07"
+        iyy="2.97638082959966E-05"
+        iyz="-1.49595565758909E-12"
+        izz="1.69604259187189E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/MX64_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/MX64_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fixed_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="MX64_1" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="MX64_2">
+    <inertial>
+      <origin
+        xyz="-0.000410624529159927 0.0144495664694551 0.0506567304349224"
+        rpy="0 0 0" />
+      <mass
+        value="0.0811680506332373" />
+      <inertia
+        ixx="4.18142202376309E-05"
+        ixy="-1.22881459907302E-12"
+        ixz="-9.80791823197918E-14"
+        iyy="2.8370916889584E-05"
+        iyz="4.16851190203591E-06"
+        izz="3.12833324136001E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/MX64_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/MX64_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="revolute">
+    <origin
+      xyz="0.00041062 0 0.0481"
+      rpy="0 0 0" />
+    <parent
+      link="MX64_1" />
+    <child
+      link="MX64_2" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.5"
+      upper="1.5"
+      effort="6"
+      velocity="6.6" />
+  </joint>
+  <link
+    name="CF_link_1">
+    <inertial>
+      <origin
+        xyz="5.01760964929932E-07 0.000282618387297381 0.226338002192761"
+        rpy="0 0 0" />
+      <mass
+        value="0.137538470264811" />
+      <inertia
+        ixx="0.00181428889793088"
+        ixy="1.6044221383086E-09"
+        ixz="-3.37925639940473E-08"
+        iyy="0.00181376363359685"
+        iyz="4.72702510785288E-06"
+        izz="2.43743564815078E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/CF_link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/CF_link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="-0.00041062 0.031524 0.055779"
+      rpy="3.1084E-15 -1.4885 -1.5708" />
+    <parent
+      link="MX64_2" />
+    <child
+      link="CF_link_1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.5"
+      upper="1.5"
+      effort="6"
+      velocity="6.6" />
+  </joint>
+  <link
+    name="CF_link_2">
+    <inertial>
+      <origin
+        xyz="-3.42123298583215E-05 0.0968260618675871 0.188434949561949"
+        rpy="0 0 0" />
+      <mass
+        value="0.141401630744405" />
+      <inertia
+        ixx="0.00182629229540659"
+        ixy="-1.90147922099377E-07"
+        ixz="-3.80290515570985E-07"
+        iyy="0.00147153877733782"
+        iyz="0.000708083058243337"
+        izz="0.000378830880802684" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/CF_link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/CF_link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint3"
+    type="revolute">
+    <origin
+      xyz="0 0 0.3569"
+      rpy="-6.2034E-15 7.1028E-16 -1.5708" />
+    <parent
+      link="CF_link_1" />
+    <child
+      link="CF_link_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.5"
+      upper="1.5"
+      effort="1.5"
+      velocity="5.5" />
+  </joint>
+  <link
+    name="end_effector">
+    <inertial>
+      <origin
+        xyz="0.0603944132098105 -1.81802526824155E-06 0.000235375793291359"
+        rpy="0 0 0" />
+      <mass
+        value="0.0208760264859297" />
+      <inertia
+        ixx="5.00737614514459E-06"
+        ixy="-1.77431714386452E-10"
+        ixz="2.24168253842086E-08"
+        iyy="1.52544112347666E-05"
+        iyz="2.83842234830201E-08"
+        izz="1.89156534519993E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/end_effector.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/end_effector.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4"
+    type="continuous">
+    <origin
+      xyz="0 0.15478 0.28713"
+      rpy="-3.1416 -1.0764 1.5708" />
+    <parent
+      link="CF_link_2" />
+    <child
+      link="end_effector" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.5"
+      upper="1.5"
+      effort="1.5"
+      velocity="5.5" />
+  </joint>
+  <link
+    name="IMU">
+    <inertial>
+      <origin
+        xyz="4.65417628121578E-05 -6.62813929349498E-09 0.000235382814238932"
+        rpy="0 0 0" />
+      <mass
+        value="0.0208760264859296" />
+      <inertia
+        ixx="5.00737614514457E-06"
+        ixy="-3.65442902869861E-12"
+        ixz="-2.24175272714698E-08"
+        iyy="1.52541911958623E-05"
+        iyz="-2.49589654617671E-13"
+        izz="1.89158734909034E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/IMU.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://thirdarm_description/meshes/IMU.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="IMU_joint"
+    type="fixed">
+    <origin
+      xyz="0.060441 0 0"
+      rpy="-0.0077519 -3.8858E-16 -3.1416" />
+    <parent
+      link="end_effector" />
+    <child
+      link="IMU" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

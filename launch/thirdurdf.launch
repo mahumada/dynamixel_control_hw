@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<launch>
+    
+  <!-- URDF robot description -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find thirdarm_description)/urdf/thirdarm.urdf.xacro'" />
+  <!-- Publish robot's state in the tf tree -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+    
+</launch>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<launch>
+    
+  <!-- URDF robot description -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find thirdarm_description)/urdf/thirdarm.urdf.xacro'" />
+  <!-- Publish robot's state in the tf tree -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_state_pub" />
+    
+  <!-- Parameters for the hardware interface and controllers -->
+  <rosparam file="$(find dynamixel_control_hw)/config/sample.yaml"/>
+
+  <!-- launch our hardware interface -->
+  <node pkg="dynamixel_control_hw" type="dynamixel_control_hw" name="dynamixel_control_hw" output="screen"/>
+
+  <!-- Start a controller for our dummy robot 
+  <node name="controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="/dynamixel_controllers/joint_state_controller /dynamixel_controllers/first_position_controller /dynamixel_controllers/second_position_controller  
+    /dynamixel_controllers/third_position_controller /dynamixel_controllers/fourth_position_controller" />
+    -->
+    
+    <rosparam ns="thug_life">
+r_cart:
+  type: robot_mechanism_controllers/JTCartesianController
+  root_name: world
+  tip_name: IMU
+  k_posture: 25.0
+  jacobian_inverse_damping: 0.01
+  pose_command_filter: 0.01
+  cart_gains:
+    trans:
+      p: 800.0
+      d: 15.0
+    rot:
+      p: 80.0
+      d: 1.2
+  joint_feedforward:
+    joint1: 3.33
+    joint2: 1.16
+    joint3: 0.1
+    joint4: 0.25
+  joint_max_effort:
+    joint1: 11.88
+    joint2: 11.64
+    joint3: 6.143
+    joint4: 6.804
+
+  vel_saturation_trans: 2.0
+  vel_saturation_rot: 4.0
+      </rosparam>
+      
+      <node name="controller" pkg="pr2_controller_manager" type="spawner" respawn="false" args="thug_life" output="screen"/>
+
+    
+</launch>

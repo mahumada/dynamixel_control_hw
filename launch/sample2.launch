@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<launch>
+    
+  <!-- URDF robot description -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find thirdarm_description)/urdf/thirdarm_description.urdf.xacro'" />
+  <!-- Publish robot's state in the tf tree -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_state_pub" />
+    
+  <!-- Parameters for the hardware interface and controllers -->
+  <rosparam file="$(find dynamixel_control_hw)/config/thirdarm.yaml"/>
+
+  <!-- launch our hardware interface -->
+  <node pkg="dynamixel_control_hw" type="dynamixel_control_hw" name="dynamixel_control_hw" output="screen"/>
+
+  <!-- Start a controller for our dummy robot -->
+  <node name="controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="/dynamixel_controllers/joint_state_controller /dynamixel_controllers/first_position_controller /dynamixel_controllers/second_position_controller  
+    /dynamixel_controllers/third_position_controller /dynamixel_controllers/fourth_position_controller" />
+</launch>
